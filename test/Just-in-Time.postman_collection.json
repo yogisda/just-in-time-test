@@ -1,0 +1,557 @@
+{
+	"info": {
+		"_postman_id": "cef96eb2-7ebd-49fc-8275-f7b3b55665f9",
+		"name": "Just-in-Time",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Initialize",
+			"item": [
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1173490e-72f2-416e-9535-a9b9b0ec1614",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"bearer_token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"signum.schlange@example.com\",\n\t\"password\": \"signum.schlange\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Just-in-Time-REST",
+								"rest",
+								"employees",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer Röhrle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5bbb18d4-11f4-4514-ad83-63304c3481e9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"id_customer_roehrle\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Jörg Röhrle\",\n\t\"street\": \"Poststraße 6\",\n\t\"zipcode\": \"72458\",\n\t\"city\": \"Albstadt\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Just-in-Time-REST/rest/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Just-in-Time-REST",
+								"rest",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Project Justin-Time",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb985f0a-74d5-4917-8c3a-7c7c4d0855f3",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"id_project_justin\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Justin-Time\",\n\t\"description\": \"Our project for Software Architecture\",\n\t\"startDate\": \"2019-04-24T08:00:00\",\n\t\"endDate\": \"2019-07-08T23:59:00\",\n\t\"estimatedHours\": 500,\n\t\"customer\": {{id_customer_roehrle}}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Just-in-Time-REST/rest/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Just-in-Time-REST",
+								"rest",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Milestone Design",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "95705a9a-4a24-412b-abf8-5118622b02a1",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"id_milestone_design\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Design\",\n\t\"description\": \"Design the frontend layout and database structure\",\n\t\"estimatedHours\": 15,\n\t\"endDate\": \"2019-04-28T11:15:00\",\n\t\"projectId\": {{id_project_justin}}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Just-in-Time-REST/rest/milestones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Just-in-Time-REST",
+								"rest",
+								"milestones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Employee MaxMustermann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ac4bd93-9308-42ec-94ce-dc49b3737ffe",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.environment.set(\"id_max_mustermann\", data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Max Mustermann\",\n\t\"email\": \"max.mustermann@example.com\",\n\t\"hoursPerDay\": 7.25,\n\t\"password\": \"max.mustermann\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Just-in-Time-REST",
+								"rest",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Max Mustermann to Justin-Time",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"projectId\": {{id_project_justin}},\n\t\"employeeId\": {{id_max_mustermann}},\n\t\"capacity\": 3.5,\n\t\"role\": {\n\t\t\"roleId\": 2,\n\t\t\"description\": \"Slave\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Just-in-Time-REST/rest/projects/{{id_project_justin}}/members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Just-in-Time-REST",
+								"rest",
+								"projects",
+								"{{id_project_justin}}",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Max Mustermann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1173490e-72f2-416e-9535-a9b9b0ec1614",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"bearer_token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"max.mustermann@example.com\",\n\t\"password\": \"max.mustermann\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Just-in-Time-REST",
+								"rest",
+								"employees",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get All Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Just-in-Time-REST",
+						"rest",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee Max Mustermann",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees/{{id_max_mustermann}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Just-in-Time-REST",
+						"rest",
+						"employees",
+						"{{id_max_mustermann}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee Max Mustermann",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1bc22e58-7d91-4b33-bb17-ca7be12e0a1a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"hoursPerDay was updated to 8.0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.hoursPerDay).to.eql(8.0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Max Mustermann\",\n\t\"email\": \"max.mustermann@example.com\",\n\t\"hoursPerDay\": 8.0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees/{{id_max_mustermann}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Just-in-Time-REST",
+						"rest",
+						"employees",
+						"{{id_max_mustermann}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee Max Mustermann",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b30b2da-1c5c-452c-a982-59c4a3fe0bf1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees/{{id_max_mustermann}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Just-in-Time-REST",
+						"rest",
+						"employees",
+						"{{id_max_mustermann}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login as Admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf3016ae-89ca-4476-9716-b522866aef64",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"bearer_token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"maximilian.rieger@example.com\",\n\t\"password\": \"maximilian.rieger\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/Just-in-Time-REST/rest/employees/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Just-in-Time-REST",
+						"rest",
+						"employees",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2ce354d8-8719-4a8e-9faf-ea0c4a110a98",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "782d101e-54a4-4947-94a7-9f6211e084d8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
