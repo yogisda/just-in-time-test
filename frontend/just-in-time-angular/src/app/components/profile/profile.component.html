@@ -1,0 +1,38 @@
+<div class="grid">
+    <div class="grid__inner">
+        <div class="cell-4 cell-8-tablet cell-8-phone">
+            <mat-card>
+                <mat-card-content>
+                    <img
+                        class="user-avatar"
+                        src="https://www.gravatar.com/avatar/{{gravatarHash}}"
+                        id="user-image"
+                    />
+                    <!--                    <mat-checkbox>Gravatar verwenden</mat-checkbox>-->
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="cell-8">
+            <mat-card>
+                <mat-card-content>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Name" (ngModelChange)="setDirty()" [(ngModel)]="employee.name">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Email-Adresse" (ngModelChange)="setDirty()" [(ngModel)]="employee.email">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <input matInput type="number" (ngModelChange)="setDirty()" placeholder="Stunden pro Tag" [(ngModel)]="employee.hoursPerDay">
+                    </mat-form-field>
+
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="saveChanges()">Änderungen speichern</button>
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+    </div>
+</div>

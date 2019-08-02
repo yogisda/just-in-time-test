@@ -1,0 +1,50 @@
+<main>
+  <div
+    class="background"
+    style="background-image:url(/assets/images/rocket.jpg)"
+  ></div>
+  <form (ngSubmit)="login()" class="content">
+    <div class="catchphrase">Make it count.</div>
+    <div class="logo">
+      <img src="/assets/logo_long.png" alt="Logo Just-In-Time" />
+    </div>
+    <mat-card>
+      <mat-card-title>Anmelden</mat-card-title>
+      <mat-card-subtitle>
+        Erfahren Sie Zeitmanagement von Morgen. Gestalten Sie Ihre Zukunft
+        jetzt.
+      </mat-card-subtitle>
+      <mat-card-content>
+        <mat-form-field appearance="fill" class="fullwidth">
+          <mat-label>E-Mail</mat-label>
+          <input
+            matInput
+            name="email"
+            placeholder="E-Mail"
+            [(ngModel)]="email"
+            autocomplete="email username"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="fullwidth">
+          <mat-label>Passwort</mat-label>
+          <input
+            type="password"
+            name="password"
+            matInput
+            placeholder="Passwort"
+            autocomplete="current-password"
+            [(ngModel)]="password"
+          />
+        </mat-form-field>
+        <mat-error *ngIf="loginError"> Passwort oder Nutzername ungültig </mat-error>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button type="submit" mat-button mat-raised-button color="primary" routerLink="/main">Anmelden</button>
+        <!-- <button mat-button>Passwort vergessen</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </form>
+
+  
+</main>

@@ -1,0 +1,13 @@
+@import "../../../scss/defs";
+.fab {
+
+    .fab-button {
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        z-index: 5000;
+        background: $c_primary;
+
+
+    }
+}

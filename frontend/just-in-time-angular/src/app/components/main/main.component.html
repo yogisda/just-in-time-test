@@ -1,0 +1,70 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [mode]="mobileQuery.matches? 'over':'side'" [opened]="mobileQuery.matches? null:''">
+    <div class="account">
+      <img
+        class="user-avatar"
+        src="/assets/logo.svg"
+        id="user-image"
+      />
+      <h4 class="fullname" *ngIf="employee">{{employee.name}}</h4>
+      <p class="user-name" *ngIf="employee">{{employee.email}}</p>
+      <div class="actions">
+        <button mat-icon-button class="menuicon" [matMenuTriggerFor]="menu">
+          <mat-icon aria-label="Options">arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item  routerLink="/logout">Abmelden</button>
+          <button mat-menu-item (click)="mobileQuery.matches? sidenav.close(): null" routerLink="/main/profile">Mein Profil</button>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="top">
+      <nav>
+        <ul>
+          <li>
+            <a routerLinkActive="active" routerLink="/main/overview" (click)="mobileQuery.matches? sidenav.close(): null">
+              <mat-icon>home</mat-icon>
+              <div class="label">Übersicht</div>
+            </a>
+          </li>
+          <li>
+            <a routerLinkActive="active" routerLink="/main/project" (click)="mobileQuery.matches? sidenav.close(): null">
+              <mat-icon>add</mat-icon>
+              <div class="label">Projekt anlegen</div>
+            </a>
+          </li> <li>
+            <a routerLinkActive="active" routerLink="/main/timebooking" (click)="mobileQuery.matches? sidenav.close(): null">
+              <mat-icon>access_time</mat-icon>
+              <div class="label">Buchung anlegen</div>
+            </a>
+          </li> <li>
+            <a routerLinkActive="active" routerLink="/main/customer" (click)="mobileQuery.matches? sidenav.close(): null">
+                <mat-icon>person_add</mat-icon>
+                <div class="label">Kunde anlegen</div>
+            </a>
+        </li> <li>
+            <a routerLinkActive="active" routerLink="/main/milestone" (click)="mobileQuery.matches? sidenav.close(): null">
+                <mat-icon>add_circle_outline</mat-icon>
+                <div class="label">Meilenstein anlegen</div>
+            </a>
+        </li>
+        </ul>
+      </nav>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <header>
+      <div class="left">
+        <button mat-icon-button class="menuicon" (click)="sidenav.toggle()">
+          <mat-icon aria-label="Sidenav öffnen">menu</mat-icon>
+        </button>
+        <h1>TimeDrive</h1>
+          <div class="save-info"><span>{{saved? 'Gesichert': 'Ungesicherte Änderungen'}}</span></div>
+      </div>
+    </header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

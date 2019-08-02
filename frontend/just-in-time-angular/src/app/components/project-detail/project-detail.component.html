@@ -1,0 +1,165 @@
+<div class="grid">
+    <div class="grid__inner">
+        <div class="cell-12">
+            <mat-card *ngIf="project">
+                <mat-card-title>{{project.name}}</mat-card-title>
+                <mat-card-content>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Name" (ngModelChange)="setDirty()" [(ngModel)]="project.name" [disabled]="!canEdit">
+                    </mat-form-field>
+
+                    <div class="checkbox">
+                        <mat-checkbox [(ngModel)]="project.finished" (ngModelChange)="setDirty()" [disabled]="!canEdit">Abgeschlossen</mat-checkbox>
+                    </div>
+
+                    <mat-form-field  class="full-width">
+                        <input
+                            matInput
+                            [matDatepicker]="startdatepicker"
+                            placeholder="Startdatum"
+                            [value]="project.startDate"
+                            (dateChange)="setDate(project.startDate,$event)"
+                            [disabled]="!canEdit"
+                        />
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="startdatepicker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #startdatepicker></mat-datepicker>
+
+                        <mat-error> Geben Sie einen gültiges Datum ein</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field  class="full-width">
+                        <input
+                            matInput
+                            [matDatepicker]="enddatepicker"
+                            placeholder="Enddatum"
+                            [value]="project.endDate"
+                            (dateChange)="setDate(project.endDate,$event)"
+                            [disabled]="!canEdit"
+                        />
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="enddatepicker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #enddatepicker></mat-datepicker>
+
+                        <mat-error> Geben Sie einen gültiges Datum ein</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                    <textarea matInput placeholder="Beschreibung" (ngModelChange)="setDirty()"
+                              [(ngModel)]="project.description"
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                              [disabled]="!canEdit"></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Kunde</mat-label>
+                        <mat-select [(ngModel)]="project.customer" name="customer" [disabled]="!canEdit">
+                            <mat-option *ngFor="let cust of customers" [value]="cust.id" >
+                                {{cust.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                    <mat-form-field class="full-width">
+                        <input matInput type="number" (ngModelChange)="setDirty()" placeholder="Geschätzte Stunden"
+                               [(ngModel)]="project.estimatedHours" [disabled]="!canEdit">
+                    </mat-form-field>
+
+
+                    <mat-toolbar>
+                        <button mat-icon-button *ngIf="!selection.isEmpty()" (click)="removeMember()" matTooltip="Ausgewählte entfernen" color="warn" [disabled]="!canEdit">
+                            <mat-icon aria-label="Ausgewählte entfernen" >remove_circle_outline</mat-icon>
+                        </button>
+                        <div class="spacer"></div>
+                            <h4>Mitarbeiter</h4>
+<!--                        <mat-form-field class="search-field" floatPlaceholder="never">-->
+<!--                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Suche" #filter>-->
+<!--                        </mat-form-field>-->
+                        <div class="spacer"></div>
+                        <button mat-icon-button (click)="addMember()" matTooltip="Teilnehmer hinzufügen" [disabled]="!canEdit">
+                            <mat-icon aria-label="Mitarbeiter hinzufügen" >person_add</mat-icon>
+                        </button>
+                    </mat-toolbar>
+                    <table mat-table *ngIf="memberData"
+                           [dataSource]="memberData">
+
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                            <th mat-header-cell *matHeaderCellDef style="width: 4rem">
+                                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                              [checked]="selection.hasValue() && isAllSelected()"
+                                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                              [aria-label]="checkboxLabel()">
+                                </mat-checkbox>
+                            </th>
+                            <td mat-cell *matCellDef="let row">
+                                <mat-checkbox (click)="$event.stopPropagation()"
+                                              (change)="$event ? selection.toggle(row) : null"
+                                              [checked]="selection.isSelected(row)"
+                                              [aria-label]="checkboxLabel(row)">
+                                </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let member"> {{member.employee.name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="hoursPerDay">
+                            <th mat-header-cell *matHeaderCellDef> Kapazität </th>
+                            <td mat-cell *matCellDef="let member"> {{member.capacity}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="role">
+                            <th mat-header-cell *matHeaderCellDef>Rolle</th>
+                            <td mat-cell *matCellDef="let member"> {{member.role.description}} </td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
+                            (click)="selection.toggle(row)">
+                        </tr>
+                    </table>
+
+
+
+
+
+
+
+
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="saveChanges()" [disabled]="!canEdit">Änderungen speichern</button>
+                </mat-card-actions>
+
+            </mat-card>
+
+            
+
+            
+        </div>
+    </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="grid">
+    <div class="grid__inner">
+        <div class="cell-12" *ngFor="let milestone of milestones">
+            <jit-milestone [milestone]="milestone"></jit-milestone>
+        </div>
+    </div>
+</div>
+
+
+<jit-fab *ngIf="project" [projectId]="project.id"></jit-fab>

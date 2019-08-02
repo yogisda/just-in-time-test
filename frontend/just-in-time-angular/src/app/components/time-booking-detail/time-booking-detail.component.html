@@ -1,0 +1,85 @@
+<div class="grid">
+    <div class="grid__inner">
+        <div class="cell cell-12">
+            <mat-card *ngIf="timeBooking">
+                <mat-card-content>
+                    <mat-form-field class="full-width">
+                        <mat-label>Projekt</mat-label>
+                        <mat-select name="Project" (ngModelChange)="onProjectSelected($event)" [(ngModel)]="selectedProject">
+                            <mat-option *ngFor="let project of projects" [value]="project.id">
+                                {{project.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Meilenstein</mat-label>
+                        <mat-select name="Milestone" [(ngModel)]="timeBooking.milestone.id" (ngModelChange)="setDirty()">
+                            <mat-option *ngFor="let milestone of milestones" [value]="milestone.id">
+                                {{milestone.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input
+                            matInput
+                            [matDatepicker]="startdatepicker"
+                            placeholder="Start"
+                            [value]="timeBooking.startTime"
+                            (dateChange)="setDate(timeBooking.startTime, $event)" />
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="startdatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startdatepicker></mat-datepicker>
+
+                        <mat-error> Geben Sie einen gültiges Datum ein</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input
+                            matInput
+                            type="time"
+                            [(ngModel)]="startTime"
+                            (blur)="onTimeChanged(timeBooking.startTime, $event.target.value)" />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input
+                            matInput
+                            [matDatepicker]="enddatepicker"
+                            placeholder="Ende"
+                            [value]="timeBooking.endTime"
+                            (dateChange)="setDate(timeBooking.endTime, $event)" />
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="enddatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #enddatepicker></mat-datepicker>
+
+                        <mat-error> Geben Sie einen gültiges Datum ein</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input
+                            matInput
+                            type="time"
+                            [(ngModel)]="endTime"
+                            (blur)="onTimeChanged(timeBooking.endTime, $event.target.value)" />
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <textarea matInput placeholder="Kommentar" (ngModelChange)="setDirty()"
+                                  [(ngModel)]="timeBooking.comments"
+                                  cdkTextareaAutosize
+                                  #autosize="cdkTextareaAutosize"
+                                  cdkAutosizeMinRows="1"></textarea>
+                    </mat-form-field>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="saveChanges()">Änderungen speichern</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

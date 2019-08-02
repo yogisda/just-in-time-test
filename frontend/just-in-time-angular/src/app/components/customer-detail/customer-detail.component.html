@@ -1,0 +1,25 @@
+<div class="grid">
+    <div class="grid__inner">
+        <div class="cell-8">
+            <mat-card>
+                <mat-card-content>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Name" (ngModelChange)="setDirty()" [(ngModel)]="customer.name" />
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Straße" (ngModelChange)="setDirty()" [(ngModel)]="customer.street">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Postleitzahl" (ngModelChange)="setDirty()" [(ngModel)]="customer.zipcode">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Stadt" (ngModelChange)="setDirty()" [(ngModel)]="customer.city">
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="saveChanges()">Änderungen speichern</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

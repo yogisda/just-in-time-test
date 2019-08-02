@@ -1,0 +1,45 @@
+<div class="grid">
+    <div class="grid__inner">
+        <div class="cell" *ngFor="let project of projects">
+            <mat-card>
+                <mat-card-title>{{project.name}}</mat-card-title>
+                <mat-card-subtitle>{{project.startDate.toLocaleDateString()}} - {{project.endDate.toLocaleDateString()}}</mat-card-subtitle>
+                <mat-card-content>
+                    <p>
+                        {{project.description}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button [routerLink]="['/main/project/', project.id]">Anzeigen</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="grid" *ngIf="timeBookings">
+    <div class="grid__inner">
+        <div class="cell-12" *ngFor="let booking of timeBookings">
+            <mat-card>
+
+                <mat-card-title *ngIf="booking.startTime.getDate() === booking.endTime.getDate()">
+                    {{booking.startTime.toLocaleDateString()}} |  {{booking.startTime.toLocaleTimeString('de-DE',{'hour':'2-digit','minute':'2-digit'})}}
+                    &ndash;  {{booking.endTime.toLocaleTimeString('de-DE',{'hour':'2-digit','minute':'2-digit'})}}
+                </mat-card-title>
+                <mat-card-title
+                    *ngIf="booking.startTime.getDate() !== booking.endTime.getDate()">
+                    {{booking.startTime.toLocaleDateString()}} {{booking.startTime.toLocaleTimeString('de-DE',{'hour':'2-digit','minute':'2-digit'})}}
+                    &ndash;
+                    {{booking.endTime.toLocaleDateString()}} {{booking.endTime.toLocaleTimeString('de-DE',{'hour':'2-digit','minute':'2-digit'})}}
+                </mat-card-title>
+                <mat-card-subtitle>{{booking.comments}}</mat-card-subtitle>
+                <mat-card-actions>
+                    <button mat-button [routerLink]="['/main/timebooking/', booking.id]">Bearbeiten</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<jit-fab *ngIf="employee" [employeeId]="employee.id"></jit-fab>
+
+

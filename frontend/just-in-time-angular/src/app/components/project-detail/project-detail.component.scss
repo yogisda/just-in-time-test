@@ -1,0 +1,42 @@
+.full-width{
+    width: 100%;
+}
+
+.checkbox{
+    padding: 0 0 1rem;
+}
+
+
+table {
+    width: 100%;
+}
+
+tr.detail-row {
+    height: 0;
+}
+
+tr.member-row:not(.example-expanded-row):hover {
+    background: #777;
+}
+
+tr.member-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+
+.member-row td {
+    border-bottom-width: 0;
+}
+
+.member-detail {
+    overflow: hidden;
+    display: flex;
+    padding: 0.5rem 0;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
+
+.search-field{
+    font-size: 1rem;
+}

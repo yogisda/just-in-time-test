@@ -1,0 +1,54 @@
+<div class="grid">
+  <div class="grid__inner">
+      <div class="cell-12">
+        <mat-card *ngIf="milestone">
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Name" (change)="setDirty()" [(ngModel)]="milestone.name">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input
+                        matInput
+                        [matDatepicker]="enddatepicker"
+                        placeholder="Enddatum"
+                        [value]="milestone.endDate"
+                        (dateChange)="setDate(milestone.endDate,$event)"
+                        (change)="setDirty()"
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="enddatepicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #enddatepicker></mat-datepicker>
+
+                    <mat-error> Geben Sie einen gültiges Datum ein</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput type="String" (change)="setDirty()" placeholder="Beschreibung" [(ngModel)]="milestone.description">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="number" (change)="setDirty()" placeholder="Geschätzte Stunden" [(ngModel)]="milestone.estimatedHours">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Projekt</mat-label>
+                    <mat-select [(ngModel)]="milestone.project" name="project">
+                        <mat-option *ngFor="let prj of projects" [value]="prj.id">
+                            {{prj.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button mat-button color="primary" (click)="saveChanges()">Änderungen speichern</button>
+            </mat-card-actions>
+
+        </mat-card>
+    </div>
+  </div>
+</div>

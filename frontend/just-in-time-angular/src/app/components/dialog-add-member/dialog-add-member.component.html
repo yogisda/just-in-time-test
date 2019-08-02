@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Member hinzufügen</h1>
+<div mat-dialog-content>
+    <mat-form-field class="full-width" *ngIf="employees">
+        <mat-label>Mitarbeiter</mat-label>
+        <mat-select [(ngModel)]="employee" name="employee" (selectionChange)="setMember()">
+            <mat-option *ngFor="let e of employees" [value]="e">
+                {{e.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width"  *ngIf="roles">
+        <mat-label>Rolle</mat-label>
+        <mat-select [(ngModel)]="role" name="role" (selectionChange)="setMember()">
+            <mat-option *ngFor="let r of roles" [value]="r">
+                {{r.description}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" >
+        <mat-label>Kapazität für Projekt</mat-label>
+       <input matInput type="number" [(ngModel)]="member.capacity" placeholder="Kapazität">
+    </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Abbrechen</button>
+    <button mat-button [mat-dialog-close]="member" cdkFocusInitial>Hinzufügen</button>
+</div>
