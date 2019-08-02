@@ -1,0 +1,12 @@
+@import "@carbon/type/scss/type";
+@import "@carbon/type/scss/font-face/sans";
+@include carbon--type-reset();
+@include carbon--font-face-sans();
+@import "@carbon/themes/scss/themes";
+
+@include carbon--theme($carbon--theme--g10);
+
+@import "@carbon/colors/scss/colors";
+@import "@carbon/layout/scss/layout";
+
+// @import 'carbon-components/scss/components/text-input';

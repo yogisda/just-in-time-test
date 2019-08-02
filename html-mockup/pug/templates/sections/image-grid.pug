@@ -1,0 +1,70 @@
+
+mixin image-grid(...images)
+
+  - var caption = 'Tolle Bildunterschrift die auch mal länger sein kann und sich bei kleinen Bildern über mehrere Zeilen erstreckt'
+  - var altText = 'Toller Alternativer Text'
+
+  <!-- Section Images - #{images.length} -->
+  .cell-12.image-grid
+    .grid__inner
+
+      case images.length
+        when 1
+          .cell.cell-12
+            a.image-lightbox(href=images[0], title=altText)
+              .image-wrapper
+                img(src=images[0], alt=altText)
+              p.caption=caption
+        when 2
+          .cell.cell-6.cell-sm-8
+              a.image-lightbox(href=images[0], title=altText)
+                .image-wrapper
+                  img(src=images[0], alt=altText)
+                p.caption=caption
+          .cell.cell-6.cell-sm-8
+              a.image-lightbox(href=images[1], title=altText)
+                .image-wrapper
+                  img(src=images[1], alt=altText)
+                p.caption=caption
+
+        when 3
+          .cell.cell-8.cell-sm-8
+              a.image-lightbox(href=images[0], title=altText)
+                .image-wrapper
+                  img(src=images[0], alt=altText)
+                p.caption=caption
+          .cell.cell-4.cell-sm-8
+            .grid__inner
+              .cell.cell-4.cell-md-12.cell-lg-12
+                  a.image-lightbox(href=images[1], title=altText)
+                    .image-wrapper
+                      img(src=images[1], alt=altText)
+                    p.caption=caption
+              .cell.cell-4.cell-md-12.cell-lg-12
+                  a.image-lightbox(href=images[2], title=altText)
+                    .image-wrapper
+                      img(src=images[2], alt=altText)
+                    p.caption=caption
+        when 4
+          each img in images
+            .cell.cell-6.cell-sm-4
+              a.image-lightbox(href=imag, title=altText)
+                .image-wrapper
+                  img(src=img, alt=altText)
+                p.caption=caption
+        when 5
+
+        when 6
+
+        when 7
+
+        when 8
+          each img in images
+            .cell.cell-md-3.cell-lg-3.cell-sm-4.cell-xs-6
+              a.image-lightbox(href=img, title=altText)
+                .image-wrapper
+                  img(src=img, alt=altText)
+                p.caption=caption
+
+        default
+          p Unsupport number of Pictures given

@@ -1,0 +1,28 @@
+// <reference path="../global.scss" />
+// Color Theme
+$colors: (
+  error: #d1050c,
+  text: #232323,
+  flowtext: #636363,
+  primary: #004f23,
+  secondary: #007298,
+  tertiary: #bfb800,
+  gray: #636363,
+  shadow: rgb(0, 0, 0),
+  overlay: rgba(0, 0, 0, 0.6),
+  hover: rgba(0, 0, 0, 0.08),
+  selection: rgba(0, 0, 0, 0.6),
+  inputFocus: #cccccc,
+  inputBG: #f2f2f2,
+  focus: rgba(0, 0, 0, 0.06),
+  divider: #d1d1d1,
+  blue: #007298,
+  background: #fff,
+  background-gray: #f6f6f6,
+);
+
+
+
+$z-layers: (
+  header: 11000,
+);

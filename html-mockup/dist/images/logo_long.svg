@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319 126">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        font-size: 48px;
+        font-family: IBMPlexSans, IBM Plex Sans;
+      }
+
+      .cls-2 {
+        font-size: 19px;
+        font-family: IBMPlexSans-SemiBold, IBM Plex Sans;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+  <g id="Logo" transform="translate(-1524 -898.5)">
+    <text id="Just-In-time" class="cls-1" transform="translate(1571 969)"><tspan x="0" y="0">Just-In-time</tspan></text>
+    <text id="next_level_management" data-name="next level management" class="cls-2" transform="translate(1571 991.004)"><tspan x="0" y="0">next level management</tspan></text>
+    <path id="Pfad_2" data-name="Pfad 2" class="cls-3" d="M1545.5-1040h-7v-20.5h7v20.5Zm-24.376-3.456h0l-6.467-2.679,7.86-18.975,6.467,2.679-7.859,18.974Zm-21.2-12.522h0l-4.948-4.949,14.6-14.6,4.949,4.949-14.6,14.6Zm-14.792-19.679h0l-2.679-6.466,19.225-7.963,2.679,6.468-19.224,7.963ZM1500-1099.5h-21v-7h21v7Zm2.035-16.266h0l-19.577-8.109,2.679-6.467,19.578,8.109-2.678,6.467Zm71.889-14.208h0l-4.949-4.949,15.1-15.1,4.949,4.949-15.1,15.1Zm-63.847,0h0l-15.1-15.1,4.949-4.949,15.1,15.1-4.948,4.949Zm51.053-10.063h0l-6.467-2.678,8.213-19.828,6.467,2.679-8.213,19.827Zm-38.26,0h0l-8.213-19.826,6.467-2.679,8.213,19.828-6.466,2.678Zm22.63-4.463h-7V-1166h7v21.5Z" transform="translate(45 2064.5)"/>
+  </g>
+</svg>

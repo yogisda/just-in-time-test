@@ -1,0 +1,29 @@
+
+mixin colors(...colors)
+  .cell-12.colors
+    .grid__inner
+      each color in colors
+        .cell-4.color-box(style="border-color:" + color)
+          .upper-box(style="background-color:" + color)
+            .copy-box(style="color:#fff; border-color:#fff" data-hex=color) Copy HEX
+          .name Color Name
+          .details
+            table
+              tr
+                th HEX
+                td=color
+              tr
+                th RGB
+                td 123/123/123
+              tr
+                th CMYK
+                td 50/50/50/20
+              tr
+                th Pantone
+                td Cool Gray 10
+              tr
+                th RAL
+                td 7065
+              tr
+                th ORACAL
+                td 072 grau

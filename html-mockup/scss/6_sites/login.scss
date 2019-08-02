@@ -1,0 +1,62 @@
+.login-page {
+  overflow: hidden;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+    align-items: center;
+    padding: 3rem 1rem;
+    width: 100%;
+    max-width: 50rem;
+    @media screen and (min-width: 30rem) {
+      justify-content: flex-start;
+    }
+  }
+
+  .background {
+    position: fixed;
+    z-index: 0;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    width: 100vw;
+  }
+  .catchphrase {
+    display: none;
+    position: relative;
+    z-index: 1;
+    @include carbon--type-style('display-02', true);
+    color: #fff;
+
+    padding: 8rem 0 4rem;
+    @media screen and (min-width: 30rem) {
+      display: block;
+    }
+  }
+
+  .login-form {
+    position: relative;
+    background: #fff;
+    width: 20rem;
+    // margin: 4rem 10vw 0;
+    // top: calc(10vh + 10rem);
+    // left: calc(10vw - 1rem);
+  }
+
+  .logo {
+    @media screen and (min-width: 30rem) {
+      position: fixed;
+      padding: 3rem;
+    }
+    position: relative;
+    padding: 1rem;
+    right: 0;
+    bottom: 0;
+    img {
+      height: 7.5rem;
+    }
+  }
+}
