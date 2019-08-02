@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/persistence
+        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="justin-time">
+		<jta-data-source>java:jboss/datasources/OracleDS</jta-data-source>
+
+		<class>edu.hsalbsig.swarch.justintime.entity.Customer</class>
+		<class>edu.hsalbsig.swarch.justintime.entity.Milestone</class>
+		<class>edu.hsalbsig.swarch.justintime.entity.Project</class>
+		<class>edu.hsalbsig.swarch.justintime.entity.ProjectRole</class>
+		<class>edu.hsalbsig.swarch.justintime.entity.Employee</class>
+		<class>edu.hsalbsig.swarch.justintime.entity.UserRole</class>
+		<class>edu.hsalbsig.swarch.justintime.entity.TimeBooking</class>
+		
+		<properties>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+		</properties>
+	</persistence-unit>
+</persistence>
