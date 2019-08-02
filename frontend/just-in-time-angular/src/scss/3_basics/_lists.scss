@@ -1,0 +1,206 @@
+// <reference path="../global.scss" />
+.list {
+  padding: .5rem 0;
+  margin: 0;
+
+  list-style: none;
+
+  li {
+    position: relative;
+
+    padding: 0;
+    padding-left: 1rem;
+
+    &:after {
+      clear: both;
+
+      content: '';
+    }
+  }
+
+  .single-line {
+    height: 3rem;
+    padding-top: .5rem;
+
+    p {
+      margin-top: .25rem;
+    }
+
+
+    &.item-user, &.item-icon {
+      height: 3.5rem;
+      p {
+        float: left;
+        margin-top: .5rem;
+        margin-left: 1rem;
+      }
+      .checkbox {
+        top: .5rem;
+      }
+    }
+
+    &.item-icon {
+      .icon {
+        margin-top: .5rem;
+      }
+      p {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  .item-checkbox {
+    .checkbox {
+      position: absolute;
+      top: .25rem;
+      right: 1rem;
+    }
+  }
+
+  .delete-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    svg path {
+      fill: $c_flowtext;
+    }
+  }
+
+  .item-icon {
+    .icon {
+      float: left;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  p, .first {
+    @include typo_body1;
+  }
+
+  .second {
+    @include typo_body2;
+
+    color: $c_flowtext;
+  }
+
+  .item-user {
+    .avatar {
+      float: left;
+      width: 2.5rem;
+      height: 2.5rem;
+
+      border-radius: 50%;
+      img {
+        width: 100%;
+        height: 100%;
+
+        border-radius: inherit;
+      }
+    }
+  }
+
+  .two-line {
+    height: 4rem;
+    padding: 1rem 0 0 1rem;
+
+    &.item-user, &.item-icon {
+      height: 4.5rem;
+    }
+
+    &.item-icon {
+      .first {
+        margin: 0 0 0 3.5rem;
+      }
+      p {
+        margin-left: 3.5rem;
+      }
+    }
+
+    &.item-checkbox {
+      .checkbox {
+        position: absolute;
+        top: 1rem;
+      }
+    }
+
+
+  
+
+
+    &.item-user {
+      .first {
+        margin: 0 0 0 3.5rem;
+      }
+      .second {
+        margin: 0 0 0 3.5rem;
+      }
+    }
+
+
+    .first {
+      margin: -.25rem 0 0;
+
+      line-height: 1;
+    }
+
+    .second {
+      padding: .375rem 0 0;
+
+      line-height: 1;
+    }
+  }
+
+  .item-meta {
+    .meta {
+      @include typo_caption;
+
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      color: $c_flowtext;
+      line-height: 1;
+    }
+  }
+
+  .item-overline {
+    p.first {
+      @include typo_body1;
+
+      padding: .25rem 0 0;
+
+      line-height: 1rem;
+    }
+  }
+
+  .overline {
+    display: block;
+    margin: -.125rem 0 0;
+
+    color: $c_flowtext;
+    line-height: 1;
+  }
+
+
+  .three-line {
+    height: 5.5rem;
+    padding: 1rem 0 0 1rem;
+
+    .overline {
+      margin: .125rem 0 0;
+    }
+
+    &.item-overline {
+      .second {
+        margin: .25rem 0 0;
+        max-height: 1.5rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+}

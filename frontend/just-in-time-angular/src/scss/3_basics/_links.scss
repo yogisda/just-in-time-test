@@ -1,0 +1,30 @@
+// <reference path="../global.scss" />
+a {
+  color: $c_blue;
+  text-decoration: none;
+
+  outline: 0;
+
+  cursor: pointer;
+  & > span.mdi {
+    transition: all .2s;
+  }
+  &:hover, &:focus {
+    color: lighten($c_blue, 10);
+  }
+  &:hover > span.mdi, &:focus > span.mdi {
+    transform: scale(1.1);
+
+    transition: all .2s;
+  }
+}
+
+
+.invisiblelink {
+  color: $c_text;
+  text-decoration: none;
+  &:hover {
+    color: $c_text;
+    text-decoration: none;
+  }
+}

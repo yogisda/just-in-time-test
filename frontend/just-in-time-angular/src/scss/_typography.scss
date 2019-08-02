@@ -1,0 +1,187 @@
+// <reference path="../global.scss" />
+// Light 300, Medium 500, regular 400
+$spacing-var: .0125rem;
+$convert-var: .0625rem;
+
+h1, h2, h3, h4, h5, h6, .substitle1, .substitle2, .body1, .body2, .button, .caption, .overline {
+  padding: 0;
+  margin: 0;
+
+  line-height: 1;
+}
+
+h1 {
+  font-size: 96 * $convert-var;
+  font-weight: 300;
+  letter-spacing: -1.5 * $spacing-var;
+}
+h2 {
+  font-size: 60 * $convert-var;
+  font-weight: 300;
+  letter-spacing: -.5 * $spacing-var;
+}
+h3 {
+  font-size: 48 * $convert-var;
+  font-weight: 400;
+  line-height: 50 * $convert-var;
+  letter-spacing: 0 * $spacing-var;
+}
+h4 {
+  font-size: 34 * $convert-var;
+  font-weight: 400;
+  line-height: 40 * $convert-var;
+  letter-spacing: .25 * $spacing-var;
+}
+h5 {
+  font-size: 24 * $convert-var;
+  font-weight: 400;
+  line-height: 32 * $convert-var;
+  letter-spacing: 0 * $spacing-var;
+}
+h6 {
+  font-size: 20 * $convert-var;
+  font-weight: 500;
+  line-height: 32 * $convert-var;
+  letter-spacing: .15 * $spacing-var;
+}
+.subtitle1 {
+  font-size: 16 * $convert-var;
+  font-weight: 400;
+  line-height: 28 * $convert-var;
+  letter-spacing: .15 * $spacing-var;
+}
+.subtitle2 {
+  font-size: 14 * $convert-var;
+  font-weight: 500;
+  line-height: 22 * $convert-var;
+  letter-spacing: .1 * $spacing-var;
+}
+.body1 {
+  font-size: 16 * $convert-var;
+  font-weight: 400;
+  line-height: 24 * $convert-var;
+  letter-spacing: .5 * $spacing-var;
+}
+.body2 {
+  font-size: 14 * $convert-var;
+  font-weight: 400;
+  line-height: 20 * $convert-var;
+  letter-spacing: .25 * $spacing-var;
+}
+.button {
+  font-size: 14 * $convert-var;
+  font-weight: 500;
+  line-height: 36 * $convert-var;
+  letter-spacing: .75 * $spacing-var;
+  text-transform: uppercase;
+}
+.caption {
+  font-size: 12 * $convert-var;
+  font-weight: 400;
+  line-height: 20 * $convert-var;
+  letter-spacing: .4 * $spacing-var;
+}
+.overline {
+  font-size: 10 * $convert-var;
+  font-weight: 400;
+  line-height: 32 * $convert-var;
+  letter-spacing: 1.5 * $spacing-var;
+  text-transform: uppercase;
+}
+
+p {
+  @extend .body1;
+
+  line-height: 1.6;
+}
+
+@mixin typo_h1 {
+  font-size: 96 * $convert-var;
+  font-weight: 300;
+  letter-spacing: -1.5 * $spacing-var;
+}
+
+@mixin typo_h2 {
+  font-size: 60 * $convert-var;
+  font-weight: 300;
+  letter-spacing: -.5 * $spacing-var;
+}
+
+@mixin typo_h3 {
+  font-size: 48 * $convert-var;
+  font-weight: 400;
+  line-height: 50 * $convert-var;
+  letter-spacing: 0 * $spacing-var;
+}
+
+@mixin typo_h4 {
+  font-size: 34 * $convert-var;
+  font-weight: 400;
+  line-height: 40 * $convert-var;
+  letter-spacing: .25 * $spacing-var;
+}
+
+@mixin typo_h5 {
+  font-size: 24 * $convert-var;
+  font-weight: 400;
+  line-height: 32 * $convert-var;
+  letter-spacing: 0 * $spacing-var;
+}
+
+@mixin typo_h6 {
+  font-size: 20 * $convert-var;
+  font-weight: 500;
+  line-height: 32 * $convert-var;
+  letter-spacing: .15 * $spacing-var;
+}
+
+@mixin typo_subtitle1 {
+  font-size: 16 * $convert-var;
+  font-weight: 400;
+  line-height: 28 * $convert-var;
+  letter-spacing: .15 * $spacing-var;
+}
+
+@mixin typo_subtitle2 {
+  font-size: 14 * $convert-var;
+  font-weight: 500;
+  line-height: 22 * $convert-var;
+  letter-spacing: .1 * $spacing-var;
+}
+
+@mixin typo_body1 {
+  font-size: 16 * $convert-var;
+  font-weight: 400;
+  line-height: 24 * $convert-var;
+  letter-spacing: .5 * $spacing-var;
+}
+
+@mixin typo_body2 {
+  font-size: 14 * $convert-var;
+  font-weight: 400;
+  line-height: 20 * $convert-var;
+  letter-spacing: .25 * $spacing-var;
+}
+
+@mixin typo_button {
+  font-size: 14 * $convert-var;
+  font-weight: 500;
+  line-height: 36 * $convert-var;
+  letter-spacing: .75 * $spacing-var;
+  text-transform: uppercase;
+}
+
+@mixin typo_caption {
+  font-size: 12 * $convert-var;
+  font-weight: 400;
+  line-height: 20 * $convert-var;
+  letter-spacing: .4 * $spacing-var;
+}
+
+@mixin typo_overline {
+  font-size: 10 * $convert-var;
+  font-weight: 400;
+  line-height: 32 * $convert-var;
+  letter-spacing: 1.5 * $spacing-var;
+  text-transform: uppercase;
+}

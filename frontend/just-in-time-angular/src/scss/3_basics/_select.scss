@@ -1,0 +1,180 @@
+// <reference path="../global.scss" />
+.select {
+  @extend input;
+
+  position: relative;
+
+  display: inline-block;
+  width: 350px;
+
+  font-size: 1rem;
+
+  background-color: transparent;
+
+  cursor: pointer;
+  &.has-value {
+    color: $c_text;
+
+    & ~ label {
+      @include typo_caption;
+
+      top: .75rem;
+      left: .625rem;
+
+      line-height: 1;
+    }
+  }
+
+  &.active {
+    & ~ .clickcatcher {
+      display: block;
+    }
+
+    & ~ .icon-dropdown {
+      transform: rotate(180deg);
+    }
+
+    .select-placeholder {
+      visibility: hidden;
+
+
+      &::before {
+        visibility: visible;
+      }
+    }
+
+    .select-box {
+      display: block;
+
+      animation: fadeInUp 500ms;
+    }
+  }
+}
+
+
+.icon-dropdown {
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+  z-index: 50;
+
+  width: 1.5rem;
+  height: 1.5rem;
+
+  transition: transform .3s ease-in-out;
+
+  pointer-events: none;
+}
+
+
+
+.select-placeholder {
+  display: block;
+  width: calc(100% - 1.5rem);
+  padding: .75rem .5rem .5rem;
+  overflow-x: hidden;
+
+  color: $c_text;
+  text-align: left;
+
+  visibility: visible;
+  pointer-events: none;
+  user-select: none;
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    padding: .2em .5em;
+
+    content: attr(data-placeholder);
+
+    visibility: hidden;
+  }
+}
+
+
+
+.select-box {
+  position: absolute;
+  top: calc(100% + .125rem);
+  left: 0;
+  z-index: 80;
+
+  box-sizing: border-box;
+  display: none;
+  min-width: 100% ;
+  padding: .5rem 0;
+
+  text-align: left;
+  list-style-type: none;
+
+  background-color: $c_background;
+  box-shadow: 0 0 1rem $c_shadow;
+  border-radius: .25rem;
+}
+
+
+.clickcatcher {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 79;
+
+  display: none;
+
+  background-color: transparent;
+}
+
+
+.select-box-options {
+  @include typo_body1;
+
+  display: list-item;
+  height: 3rem;
+  padding: 1rem 1rem;
+
+  color: $c_text;
+  line-height: 1;
+
+  background: $c_background;
+
+  user-select: none;
+
+  &:hover, &:focus {
+    background: rgba($c_text, .16);
+
+    cursor: pointer;
+  }
+  &.selected::after {
+    display: inline;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 20px, 0);
+
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

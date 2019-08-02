@@ -1,0 +1,50 @@
+// <reference path="../global.scss" />
+.icon {
+  speak: none;
+
+  width: 100%;
+  height: 100%;
+
+  line-height: 1;
+  text-transform: none;
+  svg {
+    height: 100%;
+  }
+}
+
+.click-icon {
+  position: relative;
+
+  display: block;
+
+  cursor: pointer;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 0;
+    height: 0;
+
+    content: '';
+
+    background: $c_text;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+
+    transition: all .25s ease-in-out;
+
+    opacity: .16;
+  }
+
+  &.onsurface:before {
+    background: $c_p_contrast;
+
+    opacity: .32;
+  }
+
+  &:hover:before {
+    width: 150%;
+    height: 150%;
+  }
+}

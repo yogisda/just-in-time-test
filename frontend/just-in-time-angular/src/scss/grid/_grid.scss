@@ -1,0 +1,132 @@
+// Copyright 2017 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+@import "./variables";
+@import "./mixins";
+
+:root {
+    @each $size in map-keys($grid-columns) {
+        --grid-margin-#{$size}: #{map-get($grid-default-margin, $size)};
+        --grid-gutter-#{$size}: #{map-get($grid-default-gutter, $size)};
+        --grid-column-width-#{$size}: #{map-get($grid-column-width, $size)};
+    }
+}
+
+// postcss-bem-linter: define layout-grid
+.grid {
+    @each $size in map-keys($grid-columns) {
+        @include grid-media-query_($size) {
+            $margin: map-get($grid-default-margin, $size);
+
+            @include grid($size, $margin, $grid-max-width);
+        }
+    }
+}
+
+.grid__inner {
+    @each $size in map-keys($grid-columns) {
+        @include grid-media-query_($size) {
+            $margin: map-get($grid-default-margin, $size);
+            $gutter: map-get($grid-default-gutter, $size);
+
+            @include grid-inner($size, $margin, $gutter);
+        }
+    }
+
+    &.no-row-gap {
+        margin-top: 0;
+        margin-bottom: 0;
+        @supports(display: grid) {
+            margin: 0;
+            grid-row-gap: 0;
+        }
+    }
+}
+
+
+
+.cell {
+    // select the upper breakpoint
+    $upper-breakpoint: nth(map-keys($grid-columns), 1);
+
+    @each $size in map-keys($grid-columns) {
+        @include grid-media-query_($size) {
+            $gutter: map-get($grid-default-gutter, $size);
+
+            @include grid-cell($size, $grid-default-column-span, $gutter);
+
+            @for $span from 1 through map-get($grid-columns, $upper-breakpoint) {
+
+                // Span classes.
+                // stylelint-disable max-nesting-depth
+                @at-root .cell-#{$span},
+                .cell-#{$span}-#{$size} {
+                    @include grid-cell-span_($size, $span, $gutter);
+                }
+
+                // stylelint-enable max-nesting-depth
+            }
+        }
+    }
+
+    // Order override classes.
+    @for $i from 1 through map-get($grid-columns, $upper-breakpoint) {
+        &--order-#{$i} {
+            @include grid-cell-order($i);
+        }
+    }
+
+    // Alignment classes.
+    &--align-top {
+        @include grid-cell-align(top);
+    }
+
+    &--align-middle {
+        @include grid-cell-align(middle);
+    }
+
+    &--align-bottom {
+        @include grid-cell-align(bottom);
+    }
+}
+
+.grid--fixed-column-width {
+    @each $size in map-keys($grid-columns) {
+        @include grid-media-query_($size) {
+            $margin: map-get($grid-default-margin, $size);
+            $gutter: map-get($grid-default-gutter, $size);
+            $column-width: map-get($grid-column-width, $size);
+
+            @include grid-fixed-column-width($size, $margin, $gutter, $column-width);
+        }
+    }
+}
+
+.grid--align-left {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.grid--align-right {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+// postcss-bem-linter: end

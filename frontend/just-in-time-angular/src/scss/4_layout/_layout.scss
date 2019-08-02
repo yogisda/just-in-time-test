@@ -1,0 +1,64 @@
+// <reference path="../global.scss" />
+body {
+@include grid-media-query_('large') {
+    .nav-drawer {
+      position: fixed;
+      left: 0;
+// order: 1;
+
+      width: 15rem;
+      height: 100%;
+    }
+
+    header {
+      position: relative;
+      left: 15rem;
+
+      width: calc(100% - 15rem);
+    }
+
+    main {
+      position: relative;
+      left: 15rem;
+
+      display: block;
+      width: calc(100% - 15rem);
+    }
+
+
+
+    @supports(display:grid) {
+      grid-template-areas: 'nav header''nav content';
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr;
+
+      display: grid;
+
+      .nav-drawer {
+        grid-area: nav;
+
+        position: static;
+
+        width: auto;
+      }
+
+      header {
+        grid-area: header;
+
+        position: static;
+
+        width: 100%;
+      }
+
+      main {
+        grid-area: content;
+        position: static;
+
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  min-height: 100%;
+}

@@ -1,0 +1,106 @@
+// <reference path="../global.scss" />
+.datepicker-overlay{
+  background: rgba(0,0,0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 400;
+}
+.dp-wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  box-shadow: 0 0 1rem $c_shadow;
+  transform: translate(-50%,-50%);
+  z-index: 500;
+  border-radius: 0.25rem;
+
+
+  .header{
+    padding: 1rem;
+    p{
+      @include typo_subtitle2;
+      color: $c_flowtext;
+    }
+
+    border-bottom: 1px solid $c_text;
+  }
+
+  .selector{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 1rem 0;
+    span.selector-title{
+      @include typo_body2;
+      white-space: nowrap;
+    }
+    .previous, .next{
+      height: 2rem;
+      width: 4rem;
+      padding: 0 1rem;
+    }
+  }
+
+  .body{
+    padding: 0 1rem;
+  }
+
+  .actions{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .calendar{
+    display: flex;
+  }
+
+  $day-size : 2rem;
+
+  .kws{
+    display: flex;
+    flex-direction: column;
+    width: $day-size;
+    margin: 0 1rem 0 0;
+  }
+
+  .weeks{
+    width: 7 * $day-size;
+  }
+
+  
+
+  .weekdays, .days, .kws{
+    display: flex;
+    span {
+      display: block;
+      width: $day-size;
+      height: $day-size;
+      text-align: center;
+    }
+  }
+
+  .days{
+    width: 7 * $day-size;
+    flex-wrap: wrap;
+  }
+
+  .day {
+    line-height: $day-size;
+    border-radius: 50%;
+    cursor: pointer;
+    &.selected{
+      background: $c_primary;
+      color: $c_p_contrast;
+  }
+
+  &:hover, &:active{
+    background:rgba($c_text, 0.16);
+  }
+}
+}

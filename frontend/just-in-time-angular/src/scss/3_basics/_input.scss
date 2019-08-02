@@ -1,0 +1,205 @@
+// <reference path="../global.scss" />
+.input-group {
+  position: relative;
+
+  padding: 0;
+  margin: 0 0 0.25rem;
+
+  &.dense{
+    margin: 0;
+  }
+
+  label {
+    @include typo_body1;
+
+    position: absolute;
+    top: 1.25rem;
+    left: .875rem;
+    z-index: 50;
+
+    display: block;
+    padding: 0 .25rem;
+
+    color: $c_flowtext;
+    line-height: 1;
+
+    background: $c_background;
+
+    transition: all .2s ease-in-out;
+
+    pointer-events: none;
+  }
+
+  input,
+  textarea {
+    @include typo_body1;
+
+    position: relative;
+    // z-index: 45;
+
+    width: calc(100% - 2rem);
+    width: 100%;
+    height: 3rem;
+    padding: 0 .875rem;
+    margin: .25rem 0 1rem;
+
+    color: $c_text;
+    line-height: 1;
+
+    background: transparent;
+    border: .0625rem solid $c_flowtext;
+    border-radius: .25rem;
+    outline: none;
+    &:focus, &:hover {
+      border: .0625rem*2 solid $c_primary;
+
+      & ~ label {
+        color: $c_primary;
+      }
+    }
+
+    &:hover, &:focus, &.has-value {
+      & ~ label {
+        @include typo_caption;
+
+        top: -.2rem;
+        left: .625rem;
+      }
+    }
+
+    &.has-error {
+      border-color: $c_error;
+      border-width: 2px;
+
+      & ~ label {
+        color: $c_error;
+      }
+
+      // & ~ .errorhint {
+      //   display: block;
+      // }
+
+      & ~ .error-icon {
+        display: block;
+        svg path {
+          fill: $c_error;
+        }
+      }
+
+      &~.hint:not(.errorhint){
+        display: none;
+      }
+
+      &~.errorhint {
+        display: block;
+      }
+    }
+  }
+
+
+  .hint {
+    @include typo_caption;
+
+    position: absolute;
+    bottom: 0;
+    left: .625rem;
+
+    color: $c_flowtext;
+    line-height: 1;
+  }
+
+  .errorhint{
+    color: $c_error;
+    display: none;
+  }
+
+  .error-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  textarea{
+    width: 100%;
+    resize: vertical;
+  }
+}
+
+.input-row {
+  flex-wrap: wrap;
+
+  display: flex;
+
+  input {
+    margin: 0 1rem 1rem 0;
+  }
+}
+
+
+.input-group.alt {
+  input, textarea {
+    height: 3.5rem;
+    padding-top: .75rem;
+
+    color: transparent;
+
+    background: $c_inputbg;
+    border: none;
+    border-bottom: .0625rem solid $c_flowtext;
+    border-radius: .25rem .25rem 0 0;
+
+    transition: background .1s ease-in-out,
+    border-bottom .1s ease-in-out, color .1s ease-in-out;
+
+    &:focus, &:hover {
+      background: $c_inputbgfocus;
+      border-bottom: .0625rem*2 solid $c_primary;
+
+      & ~ label {
+        color: $c_primary;
+      }
+    }
+
+    &:hover, &:focus, &.has-value {
+      color: $c_text;
+      & ~ label {
+        top: .75rem;
+        left: .625rem;
+
+        line-height: 1;
+      }
+    }
+
+    &.has-error {
+      border-bottom: .0625rem*2 solid $c_error;
+
+      & ~ label {
+        color: $c_error;
+      }
+    }
+  }
+
+  .error-icon {
+    top: 1.25rem;
+  }
+
+  label {
+    top: 1.5rem;
+
+    line-height: 1;
+
+    background: transparent;
+  }
+
+
+    textarea {
+      height: 5rem;
+      width: 100%;
+      resize: vertical;
+      padding-top: 1.5rem;
+    }
+}

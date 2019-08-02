@@ -1,0 +1,15 @@
+// <reference path="../global.scss" />
+.header-row{
+  display: flex;
+  align-items: center;
+  &.edit{
+    h4 {
+      margin-left: 1.5rem;
+      flex-grow: 1;
+    }
+    .icon{
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+  }

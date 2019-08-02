@@ -1,0 +1,22 @@
+// <reference path="../global.scss" />
+.chip-wrapper {
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  display: flex;
+  width: 100%;
+}
+.chip {
+  @include typo_body2;
+
+  height: 2rem;
+  padding: .5625rem .75rem;
+  margin: .125rem .5rem .125rem 0;
+
+  line-height: 1;
+  text-align: center;
+
+  background-color: $c_inputbgfocus;
+  border-radius: 1rem;
+}

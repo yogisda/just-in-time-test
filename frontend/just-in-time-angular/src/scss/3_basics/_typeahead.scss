@@ -1,0 +1,67 @@
+// <reference path="../global.scss" />
+.input-group {
+  .twitter-typeahead {
+    display: block !important;
+    width: 100%;
+
+    &:hover, &:focus, &.has-value {
+      color: $c_text;
+
+      & ~ label {
+        @include typo_caption;
+
+        top: .75rem;
+        left: .625rem;
+
+        line-height: 1;
+      }
+    }
+
+    &:focus, &:hover, &:active, .typeahead {
+      & ~ label {
+        color: $c_primary;
+      }
+    }
+  }
+
+  &.has-value {
+    label {
+      @include typo_caption;
+
+      top: .75rem;
+      left: .625rem;
+
+      line-height: 1;
+    }
+  }
+}
+
+
+.tt-menu {
+  top: 3.75rem !important;
+
+  width: 100%;
+  padding: .5rem 0;
+
+  background: $c_background;
+  box-shadow: 0 0 1rem $c_shadow;
+  border-radius: .25rem;
+
+
+  .tt-suggestion {
+    @include typo_body1;
+
+    height: 3rem;
+    padding: 1rem 1rem;
+
+    line-height: 1;
+    &:hover, &:focus {
+      background: rgba($c_text, .16);
+      cursor: pointer;
+    }
+  }
+
+  .tt-cursor {
+    background: rgba($c_text, .16);
+  }
+}

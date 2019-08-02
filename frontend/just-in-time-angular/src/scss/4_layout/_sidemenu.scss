@@ -1,0 +1,289 @@
+// <reference path="../global.scss" />
+.sidemenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  width: 15rem;
+  height: 100vh;
+  padding-top: 4rem;
+
+  background-color: $c_background;
+  border-right: 1px solid $c_shadow;
+
+  .sidemenu-wrapper {
+    flex-direction: column;
+    justify-content: space-between;
+
+    display: flex;
+    height: 100%;
+  }
+
+  nav {
+    ul {
+      padding-left: 0;
+      li {
+        position: relative;
+
+        height: 3rem;
+
+        list-style: none;
+
+        &:before {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          z-index: -1;
+
+          width: 100%;
+          height: 100%;
+
+          content: '';
+
+          transform: translate(-50%,-50%);
+
+          transition: 50ms;
+        }
+
+        &:hover:before {
+          background-color: $c_hover;
+        }
+
+        &:active:before {
+          background-color: $c_selection;
+        }
+
+        a {
+          @include typo_body2;
+
+          fill: $c_text;
+
+          align-items: center;
+          justify-content: flex-start;
+
+          display: flex;
+          width: 100%;
+          height: 100%;
+
+          color: $c_text;
+          line-height: 1;
+
+          transition: 50ms;
+
+          &:hover {
+            fill: $c_text;
+
+            color: $c_text;
+          }
+
+          &:focus {
+            background-color: $c_focus;
+          }
+
+          .icon {
+            flex-basis: 1.5rem;
+
+            width: 2rem;
+            height: 2rem;
+            margin: 0 24px 0 16px;
+          }
+
+          .label {
+            padding-top: .3rem;
+          }
+        }
+      }
+    }
+  }
+
+  .sidemenu-bottom {
+    padding: 3rem 0 3rem 0;
+
+    text-align: center;
+
+    & > :not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    .date-time {
+      @include typo_subtitle2;
+    }
+
+    .logo {
+      fill: $c_flowtext;
+
+      height: auto;
+      max-width: 5rem;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .license {
+      @include typo_caption;
+
+      color: $c_flowtext;
+    }
+  }
+}
+
+
+.nav-drawer {
+  @include grid-media-query_('large') {
+    position: static;
+
+    min-height: 100vh;
+
+    border-right: 1px solid $c_divider;
+    transform: none;
+    // box-shadow: 0 0 1rem $c_shadow;
+  }  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  z-index: 3000;
+
+  display: flex;
+  min-width: 16rem;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  color: $c_text;
+
+  background: $c_background;
+  transform: translateX(-100%);
+
+  transition: transform .3s ease-in-out;
+
+  &.open {
+    transform: translate(0);
+    & ~ .nav-drawer-dropback {
+      right: 0;
+
+      opacity: 1;
+    }
+  }
+
+  & ~ .nav-drawer-dropback {
+    position: fixed;
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 2999;
+
+    background: $c_overlay;
+
+    transition: opacity .2s ease-in-out;
+
+    opacity: 0;
+  }
+
+
+  .account {
+    padding: 1rem 2rem .25rem 1rem;
+
+    border-bottom: 1px solid $c_divider;
+    img {
+      width: 4rem;
+      height: 4rem;
+      margin: 2rem 0 1rem;
+
+      border-radius: 50%;
+    }
+
+    .user-name {
+      color: $c_flowtext;
+    }
+
+    .actions {
+      margin: 0 -.5rem;
+    }
+  }
+  .top {
+    flex-grow: 1;
+  }
+
+
+  nav {
+    padding: 1rem 0;
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+
+      list-style: none;
+    }
+
+    li {
+      height: 3rem;
+      padding: .25rem;
+    }
+
+    a {
+      align-items: center;
+      justify-content: flex-start;
+
+      display: flex;
+      height: 100%;
+      padding: 0 .75rem;
+
+      color: $c_text;
+
+      border-radius: .25rem;
+      &.active {
+        color: $c_blue;
+
+        background: rgba($c_blue, .16);
+
+        .icon svg path {
+          fill: $c_blue;
+        }
+      }
+
+      &:hover {
+        background: $c_hover;
+      }
+
+      .label {
+        margin-left: 1rem;
+
+        line-height: 1;
+      }
+    }
+  }
+
+
+  .bottom {
+    padding: 1rem;
+
+    text-align: center;
+    & > :not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    .date-time {
+      @include typo_subtitle2;
+    }
+
+    .logo {
+      fill: $c_flowtext;
+
+      height: auto;
+      max-width: 5rem;
+      margin: 1rem auto;
+    }
+
+    .license {
+      @include typo_caption;
+
+      color: $c_flowtext;
+    }
+  }
+}

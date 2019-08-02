@@ -1,0 +1,25 @@
+// <reference path="../global.scss" />
+body {
+  -webkit-text-size-adjust: 100%;
+
+  color: $c_text;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  line-height: 1;
+
+  background-color: $c_background;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  height: auto;
+  min-height: 100%;
+}
+:root {
+  font-size: 16px;
+}

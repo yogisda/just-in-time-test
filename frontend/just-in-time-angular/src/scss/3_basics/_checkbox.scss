@@ -1,0 +1,278 @@
+// <reference path="../global.scss" />
+.checkbox {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  position: relative;
+  flex: 0 0 18px;
+
+  box-sizing: content-box;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  padding: 11px;
+
+  line-height: 0;
+  vertical-align: bottom;
+  white-space: nowrap;
+
+  will-change: transform, opacity;
+
+  cursor: pointer;
+  &::before, &::after {
+    position: absolute;
+
+    content: '';
+
+    border-radius: 50%;
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &::before {
+    z-index: 1;
+
+    transition: opacity 15ms linear, background-color 15ms linear;
+  }
+
+  &::before, &::after {
+    background-color: $c_primary;
+  }
+
+  &:hover::before {
+    opacity: .04;
+  }
+
+  &:focus::before {
+    transition-duration: 75ms;
+
+    opacity: .12;
+  }
+
+  &::after {
+    transition: opacity 150ms linear;
+  }
+
+  &:active::after {
+    transition-duration: 75ms;
+
+    opacity: .16;
+  }
+
+  &::before, &::after {
+    top: calc(50% - 50%);
+
+/* @noflip */
+    left: calc(50% - 50%);
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .checkmark {
+    color: $c_p_contrast;
+  }
+
+  .mixedmark {
+    border-color: $c_p_contrast;
+  }
+
+
+
+  .background::before {
+    background-color: $c_primary;
+  }
+
+
+  .native-control:enabled:not(:checked):not(:indeterminate) ~ .background {
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, .54);
+  }
+
+  .native-control:enabled:checked ~ .background, .native-control:enabled:indeterminate ~ .background {
+    background-color: $c_primary;
+    border-color: $c_primary;
+  }
+
+
+  .native-control:disabled:not(:checked):not(:indeterminate) ~ .background {
+    border-color: rgba(0, 0, 0, .26);
+  }
+
+  .native-control:disabled:checked ~ .background, .native-control:disabled:indeterminate ~ .background {
+    background-color: rgba(0, 0, 0, .26);
+    border-color: transparent;
+  }
+
+
+  .mdc-checkbox--disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .background {
+    position: absolute;
+    top: 11px;
+/* @noflip */
+    right: initial;
+    bottom: 0;
+    /* @noflip */
+    left: 11px;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    display: inline-flex;
+    width: 45%;
+    height: 45%;
+
+    background-color: transparent;
+    border: 2px solid $c_primary;
+    border-radius: 2px;
+
+    transition: background-color 90ms 0ms cubic-bezier(.4, 0, .6, 1), border-color 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    will-change: background-color, border-color;
+
+    pointer-events: none;
+  }
+
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    transition: opacity 180ms 0ms cubic-bezier(.4, 0, .6, 1);
+
+    opacity: 0;
+  }
+
+  // .mdc-checkbox--upgraded .checkmark {
+  //     opacity: 1;
+  // }
+
+  .checkmark-path {
+    stroke: $c_p_contrast;
+    stroke-dasharray: 29.78334;
+    stroke-dashoffset: 29.78334;
+    stroke-width: 3.12px;
+
+    transition: stroke-dashoffset 180ms 0ms cubic-bezier(.4, 0, .6, 1);
+  }
+
+  .mixedmark {
+    width: 100%;
+    height: 0;
+
+    border-style: solid;
+    border-width: 1px;
+    -webkit-transform: scaleX(0) rotate(0deg);
+            transform: scaleX(0) rotate(0deg);
+
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), -webkit-transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), transform 90ms 0ms cubic-bezier(.4, 0, .6, 1), -webkit-transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+
+    opacity: 0;
+  }
+
+
+  .native-control:checked ~ .background, .native-control:indeterminate ~ .background {
+    transition: border-color 90ms 0ms cubic-bezier(0, 0, .2, 1), background-color 90ms 0ms cubic-bezier(0, 0, .2, 1);
+  }
+
+  .native-control:checked ~ .background .checkmark-path, .native-control:indeterminate ~ .background .checkmark-path {
+    stroke-dashoffset: 0;
+  }
+
+  .background::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    content: '';
+
+    border-radius: 50%;
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), -webkit-transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), transform 90ms 0ms cubic-bezier(.4, 0, .6, 1), -webkit-transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    will-change: opacity, transform;
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
+
+  .native-control:focus ~ .background::before {
+    -webkit-transform: scale(2.75, 2.75);
+            transform: scale(2.75, 2.75);
+
+    transition: opacity 80ms 0ms cubic-bezier(0, 0, .2, 1), -webkit-transform 80ms 0ms cubic-bezier(0, 0, .2, 1);
+    transition: opacity 80ms 0ms cubic-bezier(0, 0, .2, 1), transform 80ms 0ms cubic-bezier(0, 0, .2, 1);
+    transition: opacity 80ms 0ms cubic-bezier(0, 0, .2, 1), transform 80ms 0ms cubic-bezier(0, 0, .2, 1), -webkit-transform 80ms 0ms cubic-bezier(0, 0, .2, 1);
+
+    opacity: .12;
+  }
+
+  .native-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    cursor: inherit;
+    opacity: 0;
+  }
+
+  .native-control:disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .native-control:checked ~ .background .checkmark {
+    transition: opacity 180ms 0ms cubic-bezier(0, 0, .2, 1), -webkit-transform 180ms 0ms cubic-bezier(0, 0, .2, 1);
+    transition: opacity 180ms 0ms cubic-bezier(0, 0, .2, 1), transform 180ms 0ms cubic-bezier(0, 0, .2, 1);
+    transition: opacity 180ms 0ms cubic-bezier(0, 0, .2, 1), transform 180ms 0ms cubic-bezier(0, 0, .2, 1), -webkit-transform 180ms 0ms cubic-bezier(0, 0, .2, 1);
+
+    opacity: 1;
+  }
+
+  .native-control:checked ~ .background .mixedmark {
+    -webkit-transform: scaleX(1) rotate(-45deg);
+            transform: scaleX(1) rotate(-45deg);
+  }
+
+  .native-control:indeterminate ~ .background .checkmark {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), -webkit-transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+    transition: opacity 90ms 0ms cubic-bezier(.4, 0, .6, 1), transform 90ms 0ms cubic-bezier(.4, 0, .6, 1), -webkit-transform 90ms 0ms cubic-bezier(.4, 0, .6, 1);
+
+    opacity: 0;
+  }
+
+  .native-control:indeterminate ~ .background .mixedmark {
+    -webkit-transform: scaleX(1) rotate(0deg);
+            transform: scaleX(1) rotate(0deg);
+
+    opacity: 1;
+  }
+}

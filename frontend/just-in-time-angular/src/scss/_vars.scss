@@ -1,0 +1,45 @@
+// <reference path="../global.scss" />
+// Color Theme
+$color_1: #2f86c2;
+$color_2: #71B62B;
+$color_3: #115e91;
+$color_4: #E67C00;
+$color_5: #BD582B;
+$color_7: rgba(0,0,0,0.2);
+$color_8: rgba(0,0,0,0.05);
+$color_9: #5f6368;
+$color_10: #fff;
+$color_11: #303030;
+$color_12: #d1d1d1;
+$color_13: rgba(0,0,0,0.6);
+$color_14: rgba(0, 0, 0, 0.08);
+$color_15: #FFF498;
+$color_16: #f2f2f2;
+$color_17: #cccccc;
+$color_18: rgba(0, 0, 0, 0.06);
+
+//Used Colors
+$c_error: $color_5;  
+$c_text: $color_11;
+$c_flowtext: $color_9;
+$c_primary : $color_1;
+$c_p_contrast: $color_10;
+$c_background: $color_10;
+$c_secondary: $color_2;
+$c_s_contrast: $color_10;
+$c_tertiary: $color_4;
+$c_t_contrast: $color_10;
+$c_blue: $color_3;
+$c_shadow: $color_7;
+$c_overlay: $color_13;
+$c_hover: $color_14; 
+$c_selection: $color_13;
+$c_inputbg: $color_16;
+$c_inputbgfocus: $color_17;
+$c_focus: $color_18;
+$c_divider: $color_12;
+//CSS-Vars
+:root {
+    --c-primary: $color_1;
+    --c-secondary: $color_2;
+}

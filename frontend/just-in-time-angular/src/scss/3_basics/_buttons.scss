@@ -1,0 +1,223 @@
+// <reference path="../global.scss" />
+/* -----Buttons----- */
+
+.btn {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  height: 36px;
+  min-width: 64px;
+  padding: 0 8px 0 8px;
+  overflow: hidden;
+
+  font-family: Roboto, sans-serif;
+  font-size: .875rem;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 500;
+  line-height: 2.25rem;
+
+/* @alternate */
+  line-height: inherit;
+  letter-spacing: .08929em;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+
+  border: none;
+  border-radius: 4px;
+  outline: none;
+
+// --ripple-fg-size: 0;
+  // --ripple-left: 0;
+  // --ripple-top: 0;
+  // --ripple-fg-scale: 1;
+  // --ripple-fg-translate-end: 0;
+  // --ripple-fg-translate-start: 0;
+
+  will-change: transform, opacity;
+
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+
+  &::before, &::after {
+    position: absolute;
+
+    content: '';
+
+    border-radius: 50%;
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &::before {
+    z-index: 1;
+
+    transition: opacity 15ms linear, background-color 15ms linear;
+  }
+
+  &::before, &::after {
+    top: calc(50% - 100%);
+
+/* @noflip */
+    left: calc(50% - 100%);
+
+    width: 200%;
+    height: 200%;
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+
+    border: 0;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, .37);
+
+    background-color: transparent;
+
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &:not(:disabled) {
+    background-color: transparent;
+  }
+
+  &:not(:disabled) {
+    color: $c_blue;
+    &.secondary-action {
+      color: $c_flowtext;
+    }
+  }
+
+  &::before, &::after {
+    background-color: $c_primary;
+  }
+
+  &:hover::before {
+    opacity: .04;
+  }
+
+  .btn__icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+
+/* @noflip */
+    margin-right: 8px;
+
+/* @noflip */
+    margin-left: 0;
+
+    font-size: 18px;
+    vertical-align: top;
+  }
+
+
+  
+}
+
+[dir='rtl'] .btn .btn__icon, .btn .btn__icon[dir='rtl'] {
+  /* @noflip */
+  margin-right: 0;
+
+/* @noflip */
+  margin-left: 8px;
+}
+
+.btn svg.btn__icon {
+  fill: currentColor;
+}
+
+.btn--raised .btn__icon, .btn--unelevated .btn__icon, .btn--outlined .btn__icon {
+  /* @noflip */
+  margin-right: 8px;
+
+/* @noflip */
+  margin-left: -4px;
+}
+
+[dir='rtl'] .btn--raised .btn__icon, .btn--raised .btn__icon[dir='rtl'], [dir='rtl'] .btn--unelevated .btn__icon, .btn--unelevated .btn__icon[dir='rtl'], [dir='rtl'] .btn--outlined .btn__icon, .btn--outlined .btn__icon[dir='rtl'] {
+  /* @noflip */
+  margin-right: -4px;
+
+/* @noflip */
+  margin-left: 8px;
+}
+
+.btn--raised, .btn--unelevated {
+  padding: 0 16px 0 16px;
+}
+
+.btn--raised:disabled, .btn--unelevated:disabled {
+  color: rgba(0, 0, 0, .37);
+
+  background-color: rgba(0, 0, 0, .12);
+}
+
+.btn--raised:not(:disabled), .btn--unelevated:not(:disabled) {
+  background-color: $c_primary;
+}
+
+.btn--raised:not(:disabled), .btn--unelevated:not(:disabled) {
+  color: $c_p_contrast;
+}
+
+.btn--raised::before, .btn--raised::after, .btn--unelevated::before, .btn--unelevated::after {
+  background-color: $c_background;
+}
+
+
+.btn--raised:hover::before, .btn--unelevated:hover::before {
+  opacity: .08;
+}
+
+.btn--raised {
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+
+
+  &:hover, &:focus {
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+  }
+
+  &:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+  }
+
+  &:disabled {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, .2), 0 0 0 0 rgba(0, 0, 0, .14), 0 0 0 0 rgba(0, 0, 0, .12);
+  }
+}
+
+.btn--outlined {
+  padding: 0 14px 0 14px;
+
+  border-style: solid;
+  border-width: 2px;
+
+
+  &:disabled {
+    border-color: rgba(0, 0, 0, .37);
+  }
+
+  &:not(:disabled) {
+    border-color: $c_primary;
+  }
+}
+

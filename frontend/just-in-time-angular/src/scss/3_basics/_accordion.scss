@@ -1,0 +1,138 @@
+// <reference path="../global.scss" />
+.accordion {
+  .header {
+    flex-wrap: wrap;
+
+    display: flex;
+    padding: 0 2rem;
+    margin: 2rem 0 0;
+
+    @each $size in map-keys($grid-columns) {
+      @include grid-media-query_($size) {
+        margin: map-get($grid-default-margin, $size) 0 0;
+      }
+    }
+
+
+    h4 {
+      flex-grow: 2;
+
+      margin-left: 1.5rem;
+    }
+    .accordion-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+
+    .push-right {
+      align-items: flex-end;
+      flex-grow: 1;
+      justify-content: flex-end;
+
+      display: none;
+    }
+  }
+
+  .accordion-chapter {
+    &.open {
+      .header .accordion-icon {
+        transform: rotate(180deg);
+      }
+
+      .accordion-content {
+        display: block;
+      }
+
+      .push-right {
+        display: flex;
+      }
+    }
+  }
+
+  .accordion-content {
+    display: none;
+  }
+}
+
+
+.filter-dropdown {
+  @include typo_caption;
+
+  position: relative;
+
+  padding: 0 1rem 0 1.25rem;
+
+  color: $c_flowtext;
+
+  cursor: pointer;
+
+  &.active {
+    & ~ .clickcatcher {
+      display: block;
+    }
+
+    .icon {
+      transform: rotate(180deg);
+    }
+
+    .options {
+      display: block;
+
+      animation: fadeInUp 500ms;
+    }
+  }
+
+  .options {
+    position: absolute;
+    top: calc(100% + .5rem);
+    left: 0;
+    z-index: 80;
+
+    box-sizing: border-box;
+    display: none;
+    min-width: 100%;
+    padding: .5rem 0;
+
+    text-align: left;
+    white-space: nowrap;
+    list-style-type: none;
+
+    background-color: $c_background;
+    box-shadow: 0 0 1rem $c_shadow;
+    border-radius: .25rem;
+  }
+
+  .option {
+    @include typo_body1;
+
+    display: list-item;
+    height: 3rem;
+    padding: 1rem 1rem;
+
+    color: $c_text;
+    line-height: 1;
+
+    background: $c_background;
+
+    user-select: none;
+    &.selected {
+      background: rgba($c_text, .05);
+    }
+
+    &:hover, &:focus {
+      background: rgba($c_text, .16);
+
+      cursor: pointer;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 1rem;
+    height: 1rem;
+  }
+}

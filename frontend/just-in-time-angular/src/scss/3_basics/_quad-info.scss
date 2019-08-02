@@ -1,0 +1,18 @@
+// <reference path="../global.scss" />
+.quad-info{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 0 0;
+  .info{
+    width: 25%;
+    min-width: 7.5rem;
+    flex-grow:1;
+
+    .caption{
+      white-space: nowrap;
+      color: $c_flowtext;
+    }
+  }
+}

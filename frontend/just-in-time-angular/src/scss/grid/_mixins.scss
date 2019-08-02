@@ -1,0 +1,199 @@
+// Copyright 2017 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+@import "./variables";
+
+// returns the lower grid boundary or null if the smallest grid is selected
+@function grid-breakpoint-min($size) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    $min: map-get($grid-breakpoints, $size);
+
+    @return if($min > 0, $min, null);
+}
+
+// returns the upper grid boundary or null if the largest grid is selected
+@function grid-breakpoint-max($size) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    $names: map-keys($grid-columns);
+    $n: index($names, $size);
+    $prev: if($n > 1, nth($names, $n - 1), null);
+
+    @return if($prev, (grid-breakpoint-min($prev) - 1px), null);
+}
+
+// Private mixins, meant for internal use.
+@mixin grid-media-query_($size) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    $min: grid-breakpoint-min($size);
+    $max: grid-breakpoint-max($size);
+
+    @if $min==null and $max !=null {
+
+        // Phone
+        @media (max-width: $max) {
+            @content;
+        }
+    }
+
+    @else if $min !=null and $max !=null {
+
+        // Tablet
+        @media (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    }
+
+    @else if $min !=null and $max==null {
+
+        // Desktop
+        @media (min-width: $min) {
+            @content;
+        }
+    }
+
+    @else {
+        // Fallback - no breakpoints defined
+        @content;
+    }
+}
+
+@mixin grid-cell-span_($size, $span, $gutter) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    $percent: percentage($span / map-get($grid-columns, $size));
+
+    @if $percent>100% {
+        $percent: 100%;
+    }
+
+    width: calc(#{$percent} - #{$gutter});
+    width: calc(#{$percent} - var(--grid-gutter-#{$size}, #{$gutter}));
+
+    @supports (display: grid) {
+        width: auto;
+        grid-column-end: span min($span, map-get($grid-columns, $size));
+    }
+}
+
+// Public mixins, meant for developer usage.
+@mixin grid($size, $margin, $max-width: null) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: $margin;
+    padding: var(--grid-margin-#{$size}, #{$margin});
+
+    @if $max-width {
+        max-width: $max-width;
+    }
+}
+
+@mixin grid-inner($size, $margin, $gutter) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    margin: -$gutter / 2;
+    margin: calc(var(--grid-gutter-#{$size}, #{$gutter}) / 2 * -1);
+
+    @supports (display: grid) {
+        display: grid;
+        margin: 0;
+        grid-gap: $gutter;
+        grid-gap: var(--grid-gutter-#{$size}, $gutter);
+        grid-template-columns: repeat(map-get($grid-columns, $size), minmax(0, 1fr));
+    }
+}
+
+@mixin grid-cell($size, $default-span, $gutter) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    @include grid-cell-span_($size, $default-span, $gutter);
+
+    box-sizing: border-box;
+    margin: $gutter / 2;
+    margin: calc(var(--grid-gutter-#{$size}, #{$gutter}) / 2);
+
+    @supports (display: grid) {
+        margin: 0;
+    }
+}
+
+@mixin grid-cell-order($order) {
+    order: $order;
+}
+
+@mixin grid-cell-align($position) {
+    @if $position=="top" {
+        align-self: flex-start;
+
+        @supports (display: grid) {
+            align-self: start;
+        }
+    }
+
+    @if $position=="middle" {
+        align-self: center;
+    }
+
+    @if $position=="bottom" {
+        align-self: flex-end;
+
+        @supports (display: grid) {
+            align-self: end;
+        }
+    }
+
+    @if $position=="stretch" {
+        align-self: stretch;
+    }
+}
+
+@mixin grid-fixed-column-width($size, $margin, $gutter, $column-width) {
+    @if not map-has-key($grid-columns, $size) {
+        @error "Invalid style specified! Choose one of #{map-keys($grid-columns)}";
+    }
+
+    $columnCount: map-get($grid-columns, $size);
+    $gutter-number: $columnCount - 1;
+    $margin-number: 2;
+
+    width: $column-width * $columnCount+$gutter * $gutter-number+$margin * $margin-number;
+    width: calc(var(--grid-column-width-#{$size}, #{$column-width}) * #{$columnCount} + var(--grid-gutter-#{$size}, #{$gutter}) * #{$gutter-number} + var(--grid-margin-#{$size}, #{$margin}) * #{$margin-number});
+}
