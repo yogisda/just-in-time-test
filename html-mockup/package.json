@@ -20,7 +20,7 @@
     "@carbon/grid": "^10.1.1",
     "@carbon/themes": "^10.1.1",
     "carbon-components": "^10.0.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "normalize.css": "^8.0.0"
   },
   "devDependencies": {
