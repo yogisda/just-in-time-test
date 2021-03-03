@@ -49,7 +49,7 @@
     "gulp-typescript": "^5.0.0",
     "gulp-uglify": "^3.0.0",
     "merge-stream": "^1.0.1",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "tsify": "^4.0.1",
     "typescript": "^3.2.2",
     "vinyl-buffer": "^1.0.1",
